@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "3718b95a-2d08-474f-941d-24ad24fc541c",
+		"name": "SecurityTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30887789"
+	},
+	"item": [
+		{
+			"name": "1. Public endpoints",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlODA0N2RiYy0xYzU2LTQzZGYtYWI2OC1mYTY2NTFkOTAwMGEiLCJzdWIiOiJzZWN1cml0eS1kZW1vLXRva2VuIiwiaXNzIjoic2VjdXJpdHktZGVtby1pc3N1ZXIiLCJhdWQiOiJzZWN1cml0eS1kZW1vLWF1ZGllbmNlIiwicm9sZXMiOiJBZG1pbiIsInVzZXJJRCI6ImlhbUFkbWluIiwiZXhwIjoxNzE2NDA4MDEwfQ.j16V8YVnVU4IBD5sfQ97YGrHV0SsAU1UbFIdR3UYsV9jrfS6KEeQp7_qV9JzykokPgk6afbgMXsJEAppRajbZg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/public",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"public"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Authenticate-GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"iamAdmin\",\r\n    \"password\": \"P@ssWorD\",\r\n    \"authority\": \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8010/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Without token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/configuration",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1 Configuration- ADMIN role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhODQyNWQ1ZC04MmUyLTQzZDYtYjkyZi0yN2VmNzAyYjcxNzAiLCJzdWIiOiJzZWN1cml0eS1kZW1vLXRva2VuIiwiaXNzIjoiZGVtby1pc3N1ZXIiLCJhdWQiOiJzZWN1cml0eS1kZW1vLWF1ZGllbmNlIiwicm9sZXMiOlsiQURNSU4iXSwidXNlcklEIjoiaWFtQWRtaW4iLCJleHAiOjE3MTY0MTAzNzN9.G33XzvSIy9BfgshWz3rw4E9Vz-3332X04bcvhw3La0Gq987ovceuwaxDB6y4isyPu7sYUC_92PAcCxfCG8MqRw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/world",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"world"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2 Configuration- Wrong role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YmEyZWU1Mi1mNjZjLTQ0OGUtOTdiMi05NjQ3MDk0M2FiODMiLCJzdWIiOiJzZWN1cml0eS1kZW1vLXRva2VuIiwiaXNzIjoiZGVtby1pc3N1ZXIiLCJhdWQiOiJzZWN1cml0eS1kZW1vLWF1ZGllbmNlIiwicm9sZXMiOlsiVVNFUiJdLCJ1c2VySUQiOiJpYW1BZG1pbiIsImV4cCI6MTcxNjQwOTk2MX0.sY1rTxpnvLU9I5VsifelJSHN5epOuoU1VHkQL2iuhnxXja7CEhm1__wz-rnXHxsYw4TlHoXZyU8nyDwefFb5dA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/configuration",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. History- USER role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YmEyZWU1Mi1mNjZjLTQ0OGUtOTdiMi05NjQ3MDk0M2FiODMiLCJzdWIiOiJzZWN1cml0eS1kZW1vLXRva2VuIiwiaXNzIjoiZGVtby1pc3N1ZXIiLCJhdWQiOiJzZWN1cml0eS1kZW1vLWF1ZGllbmNlIiwicm9sZXMiOlsiVVNFUiJdLCJ1c2VySUQiOiJpYW1BZG1pbiIsImV4cCI6MTgxNjQwOTk2MX0.a9sjyXd5-rGP1iXyDlND9Ax6UMgRAQbVRaY_Na4qHxCn6kFDPfO_PjPA41hoGt4dZSvBfUMhffZDKMBfaqorKA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8010/history",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"history"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
