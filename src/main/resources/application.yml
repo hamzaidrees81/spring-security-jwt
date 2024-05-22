@@ -1,0 +1,13 @@
+spring:
+  application:
+      name: demo
+
+server:
+  port : 8010
+
+config:
+  jwt:
+    issuer: demo-issuer
+    leeway: 10000
+    key: TOKEN_SECRET
+    expirymilliseconds: 300000
